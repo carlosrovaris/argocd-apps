@@ -10,12 +10,12 @@ spec:
   project: default
   source:
     path: prometheus
-    repoURL: "https://github.com/argocd/argocd-example-apps.git"
+    repoURL: "https://prometheus-community.github.io/helm-charts"
     targetRevision: HEAD
     helm:
       releaseName: prometheus
-      valuesFiles:
-        - values-prd.yaml
+      # valuesFiles:
+      #   - values-prd.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
