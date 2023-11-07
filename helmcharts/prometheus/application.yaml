@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: o11y
+spec:
+  destination:
+    namespace: o11y
+    server: "https://kubernetes.default.svc"
+  project: default
+  sources:
+    - chart: prometheus
+      repoURL: "https://prometheus-community.github.io/helm-charts"
+      targetRevision: 52.1.0
+      helm:
+        valueFiles:
+          - $values/prometheus/values-prd.yaml
+    - repoURL: "https://github.com/carlosrovaris/argocd-apps.git"
+      ref: values
+      targetRevision: main
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
