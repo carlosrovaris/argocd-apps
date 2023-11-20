@@ -1,19 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics-server
+  name: teste1
   namespace: argocd
 spec:
+  destination:
+    namespace: teste1
+    server: "https://kubernetes.default.svc"
   project: default
   sources:
     - chart: prometheus
       repoURL: https://kubernetes-sigs.github.io/metrics-server/
       targetRevision: 3.11.0
       helm:
-        valuesObject:
-          apiService.create: true
-          replicas: 1
-          extraArgs: {"kubelet-insecure-tls","kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname"}
-  destination:
-    namespace: kube-system
-    server: "https://kubernetes.default.svc"
+        valueFiles:
+          - $values/metrics-server/values.yaml
+    - repoURL: https://github.com/carlosrovaris/argocd-apps/
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
