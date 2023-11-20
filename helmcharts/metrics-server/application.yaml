@@ -7,13 +7,13 @@ spec:
   project: default
   sources:
     - chart: metrics-server
-      repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
-      targetRevision: 'main'
+      repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
+      targetRevision: 3.11.0
       helm:
         valueFiles:
           - $values/values/metrics-server/values.yaml
     - repoURL: https://github.com/carlosrovaris/argocd-apps/
-      targetRevision: 'main'
+      targetRevision: HEAD
       ref: values
   destination:
     namespace: kube-system
