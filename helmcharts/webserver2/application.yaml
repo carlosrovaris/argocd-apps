@@ -4,20 +4,23 @@ metadata:
   name: webserver2
   namespace: argocd
 spec:
-  destination:
-    namespace: webserver2
-    server: "https://kubernetes.default.svc"
   project: default
   sources:
-    - chart: nginx
-      repoURL: https://charts.bitnami.com/bitnami
+    - repoURL: 'https://charts.bitnami.com/bitnami'
       targetRevision: 15.4.2
       helm:
         valueFiles:
-        - $values/webserver2/values.yaml
-    - repoURL: https://github.com/carlosrovaris/argocd-apps/
+          - $values/values/webserver2/values.yaml
+      chart: nginx
+    - repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
       targetRevision: main
       ref: values
+  destination:
+    namespace: webserver2
+    server: 'https://kubernetes.default.svc'
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
