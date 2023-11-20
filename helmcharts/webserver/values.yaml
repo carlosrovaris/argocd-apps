@@ -1,2 +1,2 @@
-bitnami/nginx:
+nginx:
   replicaCount: 10
