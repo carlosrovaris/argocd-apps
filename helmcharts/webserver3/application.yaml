@@ -4,7 +4,7 @@ metadata:
   name: webserver3
   namespace: argocd
 spec:
-project: default
+  project: default
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: webserver-ui
@@ -19,7 +19,7 @@ project: default
       targetRevision: 15.4.2
       helm:
         valueFiles:
-          - $values/values/webserver3/values.yaml
+          - $values/values/webserver2/values.yaml
       chart: nginx
     - repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
       targetRevision: main
