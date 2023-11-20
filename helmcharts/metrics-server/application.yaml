@@ -6,14 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
-    targetRevision: 3.8.2
-    helm:
-      parameters:
-        - name: replicas
-          value: '2'
-      values: 'args: ["--kubelet-insecure-tls"]'
-    chart: metrics-server
+    - repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
+      chart: metrics-server
+      targetRevision: 3.8.2
+      helm:
+        valuesFiles:
+          - $values/values/metrics-server/values.yaml
+    - repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
+      targetRevision: HEAD
+      ref: values
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-system

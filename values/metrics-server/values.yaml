@@ -1,3 +1,2 @@
-apiService.create: true 
-replicas: 1
-extraArgs: {"kubelet-insecure-tls","kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname"}
+replicas: 5
+args: ["--kubelet-insecure-tls"]
