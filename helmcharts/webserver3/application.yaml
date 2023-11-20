@@ -14,6 +14,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
+syncOptions:
   sources:
     - repoURL: 'https://charts.bitnami.com/bitnami'
       targetRevision: 15.4.2
