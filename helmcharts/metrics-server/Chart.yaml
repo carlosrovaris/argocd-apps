@@ -1,8 +1,8 @@
 apiVersion: v2
 name: metrics-server
-description: Chart to install metrics-server
+description: Chart to install Kubernetes Metrics Server
 type: application
-version: 0.1.0
+version: 3.8.2
 appVersion: "1.0"
 
 dependencies:

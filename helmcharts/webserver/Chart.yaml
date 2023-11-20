@@ -1,0 +1,11 @@
+apiVersion: v2
+name: metrics-server
+description: Chart to install WebServer
+type: application
+version: 15.4.2
+appVersion: "1.25.3"
+
+dependencies:
+- name: bitnami/nginx
+  version: 15.4.2
+  repository: https://charts.bitnami.com/bitnami
