@@ -1,23 +1,26 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: metricsserver
-#   namespace: argocd
-# spec:
-#   project: default
-#   sources:
-#     repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
-#     path: helmcharts/metrics-server
-#     targetRevision: HEAD
-#     helm:
-#       valueFiles:
-#         - values.yaml
-#   destination:
-#     namespace: kube-system
-#     server: 'https://kubernetes.default.svc'
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metricsserver
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - chart: metrics-server
+      repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+          - $values/values/metrics-server/values.yaml
+    - repoURL: https://github.com/carlosrovaris/argocd-apps/
+      targetRevision: HEAD
+      ref: values
+  destination:
+    namespace: kube-system
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
