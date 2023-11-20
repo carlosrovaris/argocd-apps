@@ -14,7 +14,7 @@ spec:
       targetRevision: 15.4.2
       helm:
         valueFiles:
-          - $values/webserver2/values.yaml
+        - $values/webserver2/values.yaml
     - repoURL: https://github.com/carlosrovaris/argocd-apps/
       targetRevision: main
       ref: values
