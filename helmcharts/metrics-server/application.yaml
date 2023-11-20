@@ -5,16 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  sources:
-    - chart: metrics-server
-      repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
-      targetRevision: 3.11.0
-      helm:
-        valueFiles:
-          - $values/values/metrics-server/values.yaml
-    - repoURL: https://github.com/carlosrovaris/argocd-apps/
-      targetRevision: HEAD
-      ref: values
+  source:
+    repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
+    path: helmcharts/metrics-server
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     namespace: kube-system
     server: 'https://kubernetes.default.svc'
