@@ -13,11 +13,10 @@ spec:
       repoURL: https://kubernetes-sigs.github.io/metrics-server/
       targetRevision: 3.11.0
       helm:
-        valueFiles:
-          - $values/metrics-server/values.yaml
-    - repoURL: https://github.com/carlosrovaris/argocd-apps/
-      targetRevision: main
-      ref: values
+        values: |
+          apiService.create: true
+          replicas: 1
+          extraArgs: {"kubelet-insecure-tls","kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname"}
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
