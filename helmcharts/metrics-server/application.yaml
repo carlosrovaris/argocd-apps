@@ -8,12 +8,12 @@ spec:
   sources:
     - chart: metrics-server
       repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
-      targetRevision: main
+      targetRevision: 'main'
       helm:
         valueFiles:
           - $values/values/metrics-server/values.yaml
     - repoURL: https://github.com/carlosrovaris/argocd-apps/
-      targetRevision: main
+      targetRevision: 'main'
       ref: values
   destination:
     namespace: kube-system
