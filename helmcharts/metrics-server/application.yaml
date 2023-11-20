@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
-      chart: metrics-server
+    - chart: metrics-server
+      repoURL: 'https://kubernetes-sigs.github.io/metrics-server/'
       targetRevision: 3.8.2
       helm:
-        valuesFiles:
+        valueFiles:
           - $values/values/metrics-server/values.yaml
     - repoURL: 'https://github.com/carlosrovaris/argocd-apps/'
       targetRevision: HEAD
