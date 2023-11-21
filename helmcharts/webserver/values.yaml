@@ -1,2 +1,2 @@
 nginx:
-  replicaCount: 10
+  replicaCount: 2
